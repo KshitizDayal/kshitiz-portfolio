@@ -1,0 +1,17 @@
+{
+  "name": "kshitiz-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio of Kshitiz Dayal, Flutter & full-stack developer.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "matter-js": "^0.20.0",
+    "next": "^15.5.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
