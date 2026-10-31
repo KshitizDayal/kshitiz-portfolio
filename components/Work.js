@@ -47,7 +47,9 @@ export default function Work() {
               <p className="chapter__desc">{p.desc}</p>
               {p.links && (
                 <p className="chapter__links">
-                  {p.links.map(l => <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>)}
+                  {p.links.map(l => (
+                    <a key={l.href} className={l.primary ? 'chapter__play' : undefined} href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                  ))}
                 </p>
               )}
             </article>

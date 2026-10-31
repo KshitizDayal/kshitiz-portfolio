@@ -2173,6 +2173,26 @@ body.is-booted .boot {
   border-color: currentColor;
 }
 
+.chapter__links {
+  align-items: center;
+}
+
+.chapter__links .chapter__play {
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--a);
+  color: #1a0d00;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.chapter__links .chapter__play:hover {
+  transform: translateY(-2px) rotate(-1.5deg);
+}
+
 .app__icon--oz {
   background: #06080f;
   color: #5cd6ff;

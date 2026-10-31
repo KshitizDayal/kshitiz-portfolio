@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "Portfolio of Kshitiz Dayal, Flutter & full-stack developer.",
+  "engines": {
+    "node": "26.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
