@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { LINKS, STATOZ } from '@/lib/data';
 import { copyEmail, flipGravity, go, hire, hotReload, openLink } from '@/lib/site';
 
@@ -10,6 +11,7 @@ const COMMANDS = [
   { label: 'Go to work', icon: '↗', hint: 'Section', run: () => go('#work') },
   { label: 'Go to career log', icon: '⎇', hint: 'Section', run: () => go('#log') },
   { label: 'Go to stack', icon: '◎', hint: 'Section', run: () => go('#stack') },
+  { label: 'Read the blog', icon: '✎', hint: 'Blog', href: '/blog' },
   { label: 'Go to contact', icon: '✉', hint: 'Section', run: () => go('#contact') },
   { label: 'Back to top', icon: '↑', run: () => go('#top') },
   { label: 'Copy email address', icon: '⧉', run: copyEmail },
@@ -21,19 +23,26 @@ const COMMANDS = [
   { label: 'sudo hire kshitiz', icon: '#', hint: '🎉', run: hire },
 ];
 
-// ⌘K / Ctrl+K or "/" opens it; R anywhere triggers a hot reload.
-export default function Palette() {
+// ⌘K / Ctrl+K or "/" opens it; R anywhere triggers a hot reload. Every blog post is a command too.
+export default function Palette({ posts = [] }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [sel, setSel] = useState(0);
   const inputRef = useRef(null);
   const listRef = useRef(null);
   const lastFocus = useRef(null);
+  const router = useRouter();
+
+  const commands = useMemo(() => {
+    const reads = posts.map(p => ({ label: `Read: ${p.title}`, icon: '¶', hint: `${p.minutes} min`, href: `/blog/${p.slug}` }));
+    const at = COMMANDS.findIndex(c => c.href === '/blog') + 1;
+    return [...COMMANDS.slice(0, at), ...reads, ...COMMANDS.slice(at)];
+  }, [posts]);
 
   const results = useMemo(() => {
     const terms = query.trim().toLowerCase().split(/\s+/);
-    return COMMANDS.filter(c => terms.every(t => c.label.toLowerCase().includes(t)));
-  }, [query]);
+    return commands.filter(c => terms.every(t => c.label.toLowerCase().includes(t)));
+  }, [query, commands]);
 
   const show = useCallback(() => {
     lastFocus.current = document.activeElement;
@@ -51,7 +60,7 @@ export default function Palette() {
     const c = results[i];
     if (!c) return;
     hide();
-    setTimeout(c.run, 60);
+    setTimeout(c.href ? () => router.push(c.href) : c.run, 60);
   };
 
   useEffect(() => {

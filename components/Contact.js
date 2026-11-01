@@ -17,7 +17,7 @@ export default function Contact() {
   return (
     <section className="section contact" id="contact">
       <div className="wrap">
-        <p className="kicker">// 04 — Contact</p>
+        <p className="kicker">// 05 — Contact</p>
 
         <div className="contact__row">
           <a className="magnet" href={`mailto:${EMAIL}`} data-magnet>

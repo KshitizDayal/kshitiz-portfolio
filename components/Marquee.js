@@ -15,7 +15,8 @@ export default function Marquee() {
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
-    const tracks = trackRefs.current;
+    // A copy: React nulls the ref slots on unmount, before this effect's cleanup stops the loop.
+    const tracks = [...trackRefs.current];
     let widths = [];
     const measure = () => { widths = tracks.map(t => t.scrollWidth / 2); };
     measure();

@@ -22,7 +22,8 @@ export default function Boot() {
     const body = document.body;
     const ready = () => body.classList.add('is-ready');
 
-    if (document.documentElement.classList.contains('skip-boot')) {
+    // Already booted: a returning visitor, or arriving from another page without a reload.
+    if (document.documentElement.classList.contains('skip-boot') || !body.classList.contains('is-booting')) {
       body.classList.remove('is-booting');
       ready();
       return;

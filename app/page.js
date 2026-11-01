@@ -7,10 +7,14 @@ import About from '@/components/About';
 import Work from '@/components/Work';
 import Log from '@/components/Log';
 import Stack from '@/components/Stack';
+import Writing from '@/components/Writing';
 import Contact from '@/components/Contact';
 import Palette from '@/components/Palette';
+import { getPosts } from '@/lib/blog';
 
 export default function Home() {
+  const posts = getPosts();
+
   return (
     <>
       <Boot />
@@ -23,9 +27,10 @@ export default function Home() {
         <Work />
         <Log />
         <Stack />
+        <Writing posts={posts} />
         <Contact />
       </main>
-      <Palette />
+      <Palette posts={posts} />
     </>
   );
 }
