@@ -20,6 +20,7 @@ Your post starts here.
 ```
 
 - `title` and `date` are required. Posts are sorted newest first by `date`.
+  Publishing two on the same day? Add a time so they sort right: `date: 2026-11-01T21:00:00+05:30`.
 - `draft: true` shows the post in `npm run dev` (with a Draft badge) but hides it from the live site.
   Delete the line or set it to `false` to publish.
 - Reading time is worked out for you.

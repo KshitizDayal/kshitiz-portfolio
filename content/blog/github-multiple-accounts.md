@@ -1,6 +1,6 @@
 ---
 title: "Two GitHub accounts, one laptop: let the folder decide"
-date: 2026-11-01
+date: 2026-11-01T14:00:00+05:30
 excerpt: My personal projects and my startup live on different GitHub accounts. Instead of juggling SSH aliases, I let the folder a repo lives in pick the account. Set it up once and never think about it again.
 tags: [Git, GitHub, Developer Setup]
 ---
